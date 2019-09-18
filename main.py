@@ -95,9 +95,15 @@ def add_movie():
     
     # TODO 
     # if the user typed nothing at all, redirect and tell them the error
+    if new_movie == "":
+        return redirect ("/?error=empty text box")
 
     # TODO 
     # if the user wants to add a terrible movie, redirect and tell them not to add it b/c it sucks
+    if new_movie in terrible_movies:
+        terrible_movie_msg = cgi.escape("Trust me you don't want to watch " + new_movie)
+        return redirect ("/?error= " + terrible_movie_msg)
+
 
     # build response content
     new_movie_element = "<strong>" + new_movie + "</strong>"
